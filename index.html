@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>For My Love ❤️</title>
+
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -9,6 +10,7 @@ body {
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
     color: white;
     padding: 50px;
+    overflow: hidden;
 }
 
 .question {
@@ -33,6 +35,34 @@ button {
 button:hover {
     background: #ffe6eb;
 }
+
+/* Hearts Animation */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 24px;
+    animation: floatUp 2s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+/* Firework animation */
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(10); opacity: 0; }
+}
 </style>
 </head>
 
@@ -40,52 +70,29 @@ button:hover {
 
 <h1>Valentine Special ❤️</h1>
 
-<!-- OLD QUESTIONS -->
-
 <div id="q1" class="question active">
-    <h2>1. Movie night 🍿 or Dinner date 🍽️?</h2>
-    <button onclick="nextQuestion('q2')">Movie Night</button>
-    <button onclick="nextQuestion('q2')">Dinner Date</button>
+    <h2>1. When is our first love anniversary? 💞</h2>
+    <button onclick="nextQuestion('q2')">21 Dec</button>
+    <button onclick="nextQuestion('q2')">5th Jan</button>
+    <button onclick="nextQuestion('q2')">9th Dec</button>
 </div>
 
 <div id="q2" class="question">
-    <h2>2. Long hug ♾️ or 50 kisses 💋?</h2>
-    <button onclick="nextQuestion('q3')">Long Hug</button>
-    <button onclick="nextQuestion('q3')">50 Kisses</button>
+    <h2>2. Do you love me? 💖</h2>
+    <button onclick="nextQuestion('q3')">Yes</button>
+    <button onclick="nextQuestion('q3')">Of course yes</button>
+    <button onclick="nextQuestion('q3')">Completely yes</button>
 </div>
 
 <div id="q3" class="question">
-    <h2>3. When I'm with you, I feel...</h2>
-    <button onclick="nextQuestion('q4')">Happy</button>
-    <button onclick="nextQuestion('q4')">Safe</button>
-    <button onclick="nextQuestion('q4')">Excited</button>
+    <h2>3. Do you really want to marry me? 💍</h2>
+    <button onclick="nextQuestion('q4')">Yes</button>
+    <button onclick="nextQuestion('q4')">Definitely</button>
+    <button onclick="nextQuestion('q4')">Big yes</button>
 </div>
-
-<!-- NEW QUESTIONS -->
 
 <div id="q4" class="question">
-    <h2>4. When is our first love anniversary? 💞</h2>
-    <button onclick="nextQuestion('q5')">21 Dec</button>
-    <button onclick="nextQuestion('q5')">5th Jan</button>
-    <button onclick="nextQuestion('q5')">9th Dec</button>
-</div>
-
-<div id="q5" class="question">
-    <h2>5. Do you love me? 💖</h2>
-    <button onclick="nextQuestion('q6')">Yes</button>
-    <button onclick="nextQuestion('q6')">Of course yes</button>
-    <button onclick="nextQuestion('q6')">Completely yes</button>
-</div>
-
-<div id="q6" class="question">
-    <h2>6. Do you really want to marry me? 💍</h2>
-    <button onclick="nextQuestion('q7')">Yes</button>
-    <button onclick="nextQuestion('q7')">Definitely</button>
-    <button onclick="nextQuestion('q7')">Big yes</button>
-</div>
-
-<div id="q7" class="question">
-    <h2>7. Will you be my Valentine? ❤️</h2>
+    <h2>4. Will you be my Valentine? ❤️</h2>
     <button onclick="showFinal()">Yes</button>
     <button onclick="showFinal()">Yes</button>
     <button onclick="showFinal()">Yes</button>
@@ -93,24 +100,55 @@ button:hover {
 
 <div id="final" class="question">
     <h2>Forever starts now 💍❤️</h2>
-    <h3>I love you more than words can say 💖i am always with you love you😍</h3>
-    <h4>Loooooooooooovvvvvvvvvvvvvvvvvveeeeeeeeeeeeeeeeee😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘youuuuu😍</h4>
+    <h3>I love you endlessly 💖</h3>
 </div>
 
 <script>
 function nextQuestion(nextId) {
-    const questions = document.querySelectorAll('.question');
-    questions.forEach(q => q.classList.remove('active'));
-    document.getElementById(nextId).classList.add('active');
+    createHearts();
+    setTimeout(() => {
+        const questions = document.querySelectorAll('.question');
+        questions.forEach(q => q.classList.remove('active'));
+        document.getElementById(nextId).classList.add('active');
+    }, 800);
 }
 
 function showFinal() {
+    createFireworks();
     const questions = document.querySelectorAll('.question');
     questions.forEach(q => q.classList.remove('active'));
     document.getElementById('final').classList.add('active');
+}
+
+function createHearts() {
+    for (let i = 0; i < 10; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 2000);
+    }
+}
+
+function createFireworks() {
+    for (let i = 0; i < 30; i++) {
+        let firework = document.createElement("div");
+        firework.classList.add("firework");
+        firework.style.left = Math.random() * window.innerWidth + "px";
+        firework.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(firework);
+
+        setTimeout(() => {
+            firework.remove();
+        }, 1000);
+    }
 }
 </script>
 
 </body>
 </html>
-
