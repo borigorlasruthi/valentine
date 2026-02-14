@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Valentine Special ❤️</title>
+<title>For My Love ❤️</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -10,15 +10,18 @@ body {
     color: white;
     padding: 50px;
 }
-.container {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 30px;
-    border-radius: 15px;
+
+.question {
+    display: none;
 }
-button {
+
+.active {
     display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 12px 25px;
     border: none;
     border-radius: 25px;
     background: white;
@@ -26,6 +29,7 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
+
 button:hover {
     background: #ffe6eb;
 }
@@ -34,25 +38,77 @@ button:hover {
 
 <body>
 
-<div class="container">
-<h1>Valentine's Day Quiz ❤️</h1>
-<p>Choose wisely 😌</p>
+<h1>Valentine Special ❤️</h1>
 
-<h3>1. Movie night 🍿 or Dinner date 🍽️?</h3>
-<button onclick="alert('Good choice 😘')">Movie Night</button>
-<button onclick="alert('Romantic choice 💖')">Dinner Date</button>
+<!-- OLD QUESTIONS -->
 
-<h3>2. Long hug ♾️ or 50 kisses 💋?</h3>
-<button onclick="alert('I love hugs too 🫶')">Long Hug</button>
-<button onclick="alert('Careful 😏')">50 Kisses</button>
-
-<h3>3. When I'm with you, I feel...</h3>
-<button onclick="alert('Aww ❤️')">Happy</button>
-<button onclick="alert('Safe with you 🤍')">Safe</button>
-<button onclick="alert('That’s cute 💘')">Excited</button>
-
-<p style="margin-top:30px;">Happy Valentine's Day 💝</p>
+<div id="q1" class="question active">
+    <h2>1. Movie night 🍿 or Dinner date 🍽️?</h2>
+    <button onclick="nextQuestion('q2')">Movie Night</button>
+    <button onclick="nextQuestion('q2')">Dinner Date</button>
 </div>
+
+<div id="q2" class="question">
+    <h2>2. Long hug ♾️ or 50 kisses 💋?</h2>
+    <button onclick="nextQuestion('q3')">Long Hug</button>
+    <button onclick="nextQuestion('q3')">50 Kisses</button>
+</div>
+
+<div id="q3" class="question">
+    <h2>3. When I'm with you, I feel...</h2>
+    <button onclick="nextQuestion('q4')">Happy</button>
+    <button onclick="nextQuestion('q4')">Safe</button>
+    <button onclick="nextQuestion('q4')">Excited</button>
+</div>
+
+<!-- NEW QUESTIONS -->
+
+<div id="q4" class="question">
+    <h2>4. When is our first love anniversary? 💞</h2>
+    <button onclick="nextQuestion('q5')">21 Dec</button>
+    <button onclick="nextQuestion('q5')">5th Jan</button>
+    <button onclick="nextQuestion('q5')">9th Dec</button>
+</div>
+
+<div id="q5" class="question">
+    <h2>5. Do you love me? 💖</h2>
+    <button onclick="nextQuestion('q6')">Yes</button>
+    <button onclick="nextQuestion('q6')">Of course yes</button>
+    <button onclick="nextQuestion('q6')">Completely yes</button>
+</div>
+
+<div id="q6" class="question">
+    <h2>6. Do you really want to marry me? 💍</h2>
+    <button onclick="nextQuestion('q7')">Yes</button>
+    <button onclick="nextQuestion('q7')">Definitely</button>
+    <button onclick="nextQuestion('q7')">Big yes</button>
+</div>
+
+<div id="q7" class="question">
+    <h2>7. Will you be my Valentine? ❤️</h2>
+    <button onclick="showFinal()">Yes</button>
+    <button onclick="showFinal()">Yes</button>
+    <button onclick="showFinal()">Yes</button>
+</div>
+
+<div id="final" class="question">
+    <h2>Forever starts now 💍❤️</h2>
+    <h3>I love you more than words can say 💖</h3>
+</div>
+
+<script>
+function nextQuestion(nextId) {
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(q => q.classList.remove('active'));
+    document.getElementById(nextId).classList.add('active');
+}
+
+function showFinal() {
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(q => q.classList.remove('active'));
+    document.getElementById('final').classList.add('active');
+}
+</script>
 
 </body>
 </html>
